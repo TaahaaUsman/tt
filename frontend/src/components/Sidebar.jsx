@@ -1,4 +1,5 @@
 import { NavLink, useSearchParams } from "react-router-dom";
+import { useSelector } from "react-redux";
 import { category } from "../data/categorie";
 import useIsMobile from "../utils/useIsMobile";
 
@@ -6,6 +7,8 @@ export default function Sidebar() {
   const isMobile = useIsMobile();
   const [searchParams] = useSearchParams();
   const currentCategory = searchParams.get("category") || "";
+  const user = useSelector((state) => state.auth.user);
+  const isSuperAdmin = user?.role === "superadmin";
 
   if (isMobile) return null;
 
@@ -29,6 +32,18 @@ export default function Sidebar() {
           >
             All courses
           </NavLink>
+          {isSuperAdmin && (
+            <NavLink
+              to="/admin"
+              className={({ isActive }) =>
+                `block px-4 py-2.5 rounded-lg text-sm font-medium transition-colors ${
+                  isActive ? "bg-blue-600 text-white" : "text-gray-700 hover:bg-gray-100"
+                }`
+              }
+            >
+              Admin
+            </NavLink>
+          )}
           <div className="pt-3 pb-1">
             <p className="px-4 py-1.5 text-xs font-medium text-gray-400 uppercase tracking-wider">
               Categories

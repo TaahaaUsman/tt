@@ -13,6 +13,8 @@ import PastPaperQuiz from "./pages/PastPaperQuiz";
 import Notes from "./pages/Notes";
 import SubjectiveQuestions from "./pages/SubjectiveQuestions";
 import Contact from "./pages/Contact";
+import Analytics from "./pages/Analytics";
+import Admin from "./pages/Admin";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import VerifyEmail from "./pages/VerifyEmail";
@@ -23,6 +25,14 @@ function ProtectedRoute({ children }) {
   const { user, loading } = useSelector((state) => state.auth);
   if (loading) return <div className="flex items-center justify-center min-h-screen">Loading...</div>;
   if (!user) return <Navigate to="/auth/login" replace />;
+  return children;
+}
+
+function SuperAdminRoute({ children }) {
+  const { user, loading } = useSelector((state) => state.auth);
+  if (loading) return <div className="flex items-center justify-center min-h-screen">Loading...</div>;
+  if (!user) return <Navigate to="/auth/login" replace />;
+  if (user.role !== "superadmin") return <Navigate to="/" replace />;
   return children;
 }
 
@@ -45,6 +55,8 @@ function AppRoutes() {
         <Route path="courses/:id" element={<CourseDetail />} />
         <Route path="courses/:courseId/questions" element={<ProtectedRoute><SubjectiveQuestions /></ProtectedRoute>} />
         <Route path="contact" element={<Contact />} />
+        <Route path="analytics" element={<Analytics />} />
+        <Route path="admin" element={<SuperAdminRoute><Admin /></SuperAdminRoute>} />
       </Route>
 
       <Route path="*" element={<Navigate to="/" replace />} />

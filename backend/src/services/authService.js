@@ -14,7 +14,7 @@ export async function loginUser({ email, password }) {
   const token = createToken(user._id);
   return {
     token,
-    user: { id: user._id, email: user.email, name: user.name, profilePicture: user.profilePictureUrl },
+    user: { id: user._id, email: user.email, name: user.name, profilePicture: user.profilePictureUrl, role: user.role || "user" },
   };
 }
 
@@ -73,7 +73,7 @@ export async function verifyEmail({ email, code }) {
   return {
     message: "Login successful",
     token,
-    user: { id: user._id, email: user.email, name: user.name, profilePicture: user.profilePictureUrl },
+    user: { id: user._id, email: user.email, name: user.name, profilePicture: user.profilePictureUrl, role: user.role || "user" },
   };
 }
 
@@ -87,7 +87,7 @@ export async function registerWithGoogle({ name, email, profilePictureUrl }) {
   return {
     message: "Login successful",
     token,
-    user: { id: user._id, email: user.email, name: user.name, profilePicture: user.profilePictureUrl },
+    user: { id: user._id, email: user.email, name: user.name, profilePicture: user.profilePictureUrl, role: user.role || "user" },
   };
 }
 

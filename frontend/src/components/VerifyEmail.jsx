@@ -36,7 +36,7 @@ export default function VerifyEmailPage() {
       }
       if (result.message) {
         toast.success(result.message);
-        if (result.user) dispatch(setUser({ _id: result.user.id, name: result.user.name, email: result.user.email, profilePictureUrl: result.user.profilePicture }));
+        if (result.user) dispatch(setUser({ _id: result.user.id, name: result.user.name, email: result.user.email, profilePictureUrl: result.user.profilePicture, role: result.user.role || "user" }));
         navigate("/");
         return;
       }

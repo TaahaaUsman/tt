@@ -15,6 +15,7 @@ const userSchema = new mongoose.Schema(
     subscriptionEndDate: { type: Date },
     bookmarkedCourses: [{ type: mongoose.Schema.Types.ObjectId, ref: "Course" }],
     enrolledCourses: [{ type: mongoose.Schema.Types.ObjectId, ref: "Course" }],
+    role: { type: String, enum: ["user", "superadmin"], default: "user" },
     isEmailVerified: { type: Boolean, default: false },
     emailVerificationCode: String,
     emailVerificationExpiry: Date,
