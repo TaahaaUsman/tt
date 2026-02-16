@@ -101,6 +101,46 @@ export function useSubjectiveQuestionsQuery(courseId) {
   });
 }
 
+// --- Analytics ---
+export function useAnalyticsStatsQuery() {
+  return useQuery({
+    queryKey: ["analytics", "stats"],
+    queryFn: () => apiFetch("/api/analytics/stats").then(fetchJson),
+  });
+}
+
+export function useAnalyticsSessionsQuery(limit = 100) {
+  return useQuery({
+    queryKey: ["analytics", "sessions", limit],
+    queryFn: () => apiFetch(`/api/analytics/sessions?limit=${limit}`).then(fetchJson).then((d) => d.sessions || []),
+  });
+}
+
+export function useAnalyticsSessionQuery(sessionId, enabled = true) {
+  return useQuery({
+    queryKey: ["analytics", "session", sessionId],
+    queryFn: () => apiFetch(`/api/analytics/session/${encodeURIComponent(sessionId)}`).then(fetchJson),
+    enabled: !!(sessionId && enabled),
+  });
+}
+
+export function useAnalyticsUsersQuery(enabled = true) {
+  return useQuery({
+    queryKey: ["analytics", "users"],
+    queryFn: () => apiFetch("/api/analytics/users").then(fetchJson).then((d) => d.users || []),
+    enabled,
+  });
+}
+
+export function useAnalyticsUserActivityQuery(userId, enabled = true) {
+  return useQuery({
+    queryKey: ["analytics", "user", userId],
+    queryFn: () =>
+      apiFetch(`/api/analytics/user/${encodeURIComponent(userId)}`).then(fetchJson),
+    enabled: !!(userId && enabled),
+  });
+}
+
 // --- Mutations ---
 export function useLoginMutation() {
   const queryClient = useQueryClient();
@@ -108,7 +148,7 @@ export function useLoginMutation() {
   return useMutation({
     mutationFn: (body) => apiFetch("/api/auth/login", { method: "POST", body: JSON.stringify(body) }).then(fetchJson),
     onSuccess: (data) => {
-      if (data?.user) dispatch(setUser({ _id: data.user.id, name: data.user.name, email: data.user.email, profilePictureUrl: data.user.profilePicture }));
+      if (data?.user) dispatch(setUser({ _id: data.user.id, name: data.user.name, email: data.user.email, profilePictureUrl: data.user.profilePicture, role: data.user.role || "user" }));
       queryClient.invalidateQueries({ queryKey: ["user"] });
     },
   });
