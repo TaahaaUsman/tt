@@ -1,0 +1,144 @@
+@import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap");
+@import "tailwindcss";
+
+:root {
+  --color-surface: #f8fafc;
+  --color-card: #ffffff;
+  --color-primary: #2563eb;
+  --color-primary-hover: #1d4ed8;
+}
+
+body {
+  background-color: var(--color-surface);
+  font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+}
+
+::selection {
+  background-color: #93dc5c;
+  color: #1e272e;
+}
+
+.short-notes-container {
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  color: #333;
+  background-color: #fff;
+  line-height: 1.6;
+}
+
+.short-notes-main-heading {
+  text-align: center;
+  font-size: 2.5em;
+  font-weight: 700;
+  margin-top: 0;
+  border-bottom: 3px solid #005a9e;
+}
+
+.short-notes-paragraphs {
+  margin-bottom: 1em;
+  text-align: justify;
+  letter-spacing: 0.1px;
+}
+
+.short-notes-topic-heading {
+  color: #005a9e;
+  font-size: 1.8em;
+  font-weight: 700;
+  margin-top: 2em;
+  margin-bottom: 1em;
+  border-bottom: 2px solid #e0e0e0;
+  padding-bottom: 0.3em;
+}
+
+.short-notes-sub-heading {
+  font-size: 1.4em;
+  font-weight: 600;
+  color: #005a9e;
+  margin-top: 1.5em;
+  margin-bottom: 10px;
+  border-bottom: 1px solid #e0e0e0;
+  padding-bottom: 0.3em;
+}
+
+.short-notes-highlight-list {
+  margin-left: 20px;
+  padding-left: 20px;
+  list-style-type: decimal;
+}
+
+.short-notes-highlight-list li {
+  margin-bottom: 0.6em;
+  line-height: 1.6;
+}
+
+.short-notes-summary {
+  background-color: #e0f7fa;
+  border-left: 6px solid #007c91;
+  padding: 20px 25px;
+  margin: 40px 0;
+  border-radius: 6px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+  font-family: "Segoe UI", sans-serif;
+}
+
+.short-notes-summary h2 {
+  color: #005a9e;
+  margin-top: 0;
+  font-size: 1.8rem;
+  font-weight: 700;
+}
+
+.short-notes-summary p {
+  margin-bottom: 1em;
+  color: #333;
+  line-height: 1.6;
+}
+
+.short-notes-overview {
+  background: linear-gradient(to right, #f3faff, #e6f0ff);
+  border: 2px solid #cce0ff;
+  border-left: 6px solid #4a8df6;
+  padding: 25px 35px;
+  margin: 40px 0;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 85, 204, 0.08);
+  font-family: "Segoe UI", sans-serif;
+}
+
+.short-notes-overview h2 {
+  color: #0047ab;
+  margin-top: 0;
+  font-size: 1.8em;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.short-notes-overview p {
+  font-size: 1rem;
+  color: #333;
+  margin-bottom: 1em;
+}
+
+.short-notes-overview-list {
+  padding-left: 25px;
+  margin: 0;
+}
+
+.short-notes-overview-list li {
+  margin-bottom: 0.7em;
+  font-size: 1.05em;
+  list-style-type: "📘 ";
+}
+
+.short-notes-overview-list a {
+  text-decoration: none;
+  color: #003b99;
+  transition: color 0.2s ease-in-out;
+}
+
+.short-notes-overview-list a:hover {
+  color: #1a66cc;
+  text-decoration: underline;
+}

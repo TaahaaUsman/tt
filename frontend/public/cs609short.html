@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CS609 Mind Map</title>
+    <style>
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+          Helvetica, Arial, sans-serif;
+        line-height: 1.6;
+        margin: 0;
+        padding: 0;
+        background-color: #f4f7f9;
+        color: #333;
+      }
+      .container {
+        max-width: 900px;
+        margin: 20px auto;
+        background-color: #ffffff;
+        padding: 30px 40px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+      }
+      h1 {
+        text-align: center;
+        font-size: 2.5em;
+        margin-top: 0;
+        border-bottom: 3px solid #005a9e;
+      }
+
+      h2 {
+        font-size: 1.8em;
+      }
+
+      h3 {
+        font-size: 1.4em;
+        border-bottom: 1px solid #e0e0e0;
+      }
+
+      p {
+        margin-bottom: 1em;
+        text-align: justify;
+      }
+      .topic-heading {
+        color: #005a9e;
+        font-size: 1.8em;
+        margin-top: 2em;
+        border-bottom: 2px solid #e0e0e0;
+        padding-bottom: 0.3em;
+      }
+
+      .sub-heading {
+        font-size: 1.4em;
+        color: #005a9e;
+        margin-top: 1.5em;
+        border-bottom: 1px solid #e0e0e0;
+        padding-bottom: 0.3em;
+      }
+
+      .highlight-list {
+        margin-left: 20px;
+        padding-left: 20px;
+        list-style-type: decimal;
+      }
+
+      .highlight-list li {
+        margin-bottom: 0.6em;
+        line-height: 1.6;
+      }
+      /* Greating section */
+      .short-notes-summary {
+        background-color: #e0f7fa;
+        border-left: 6px solid #007c91;
+        padding: 20px 25px;
+        margin: 40px 0;
+        border-radius: 6px;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+        font-family: "Segoe UI", sans-serif;
+      }
+
+      .short-notes-summary h2 {
+        color: #005a9e;
+        margin-top: 0;
+      }
+
+      .short-notes-summary p {
+        margin-bottom: 1em;
+        color: #333;
+        line-height: 1.6;
+      }
+
+      /* midterm-overview section */
+
+      .notes-overview {
+        background: linear-gradient(to right, #f3faff, #e6f0ff);
+        border: 2px solid #cce0ff;
+        border-left: 6px solid #4a8df6;
+        padding: 25px 35px;
+        margin: 40px 0;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0, 85, 204, 0.08);
+        font-family: "Segoe UI", sans-serif;
+      }
+
+      .notes-overview h2 {
+        color: #0047ab;
+        margin-top: 0;
+        font-size: 1.8em;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .notes-overview p {
+        font-size: 1rem;
+        color: #333;
+        margin-bottom: 1em;
+      }
+
+      .overview-list {
+        padding-left: 25px;
+        margin: 0;
+      }
+
+      .overview-list li {
+        margin-bottom: 0.7em;
+        font-size: 1.05em;
+        list-style-type: "📘 ";
+      }
+
+      .overview-list a {
+        text-decoration: none;
+        color: #003b99;
+        transition: color 0.2s ease-in-out;
+      }
+
+      .overview-list a:hover {
+        color: #1a66cc;
+        text-decoration: underline;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Major Topics of CS609</h1>
+
+      <!-- ==================================================== -->
+      <div class="notes-overview">
+        <h2>Midterm Topics Overview</h2>
+        <p>
+          This section covers the 8 most important topics you need to know for
+          your midterm paper:
+        </p>
+        <ol class="overview-list">
+          <li><a href="#topic1">Introduction to Windows OS</a></li>
+          <li><a href="#topic2">Evolution of Windows</a></li>
+          <li><a href="#topic3">File Systems & File Operations</a></li>
+          <li>
+            <a href="#topic4">Character Encoding & Generic Programming</a>
+          </li>
+          <li><a href="#topic5">Error Handling</a></li>
+          <li><a href="#topic6">Processes & Multitasking</a></li>
+          <li><a href="#topic7">Interprocess Communication (IPC)</a></li>
+          <li><a href="#topic8">Thread Management & Scheduling</a></li>
+        </ol>
+      </div>
+
+      <!-- ==================================================== -->
+      <h2 class="topic-heading" id="topic1">
+        Topic 1: Windows Operating System
+      </h2>
+      <!-- ==================================================== -->
+
+      <p>
+        The <strong>Windows Operating System</strong> is a special type of
+        software that helps run your computer. It manages everything your
+        computer does—like running programs, using memory, saving files, and
+        connecting to devices like printers or USB drives.
+      </p>
+
+      <h3 class="sub-heading">Key Things Windows OS Does:</h3>
+      <ol class="highlight-list">
+        <li>
+          <strong>Memory Management:</strong> Controls where programs are stored
+          in memory and moves data to keep things running smoothly.
+        </li>
+        <li>
+          <strong>File System Management:</strong> Helps save, open, and
+          organize files in folders with long names.
+        </li>
+        <li>
+          <strong>Processor Management:</strong> Shares work between multiple
+          processors or cores to improve speed.
+        </li>
+        <li>
+          <strong>Naming and Locating Resources:</strong> Gives special names to
+          system parts like files and programs so it can find and use them.
+        </li>
+        <li>
+          <strong>Multitasking:</strong> Lets you run many programs at once,
+          like watching videos while typing.
+        </li>
+        <li>
+          <strong>Communication and Synchronization:</strong> Helps programs
+          share data safely without crashing.
+        </li>
+        <li>
+          <strong>Security and Protection:</strong> Keeps your data safe and
+          blocks illegal access.
+        </li>
+      </ol>
+
+      <p>
+        <strong>Summary:</strong> Windows is like the manager of your computer.
+        It handles memory, files, apps, security, and keeps everything working
+        together.
+      </p>
+
+      <!-- ==================================================== -->
+      <h2 class="topic-heading" id="topic2">Topic 2: Windows Evolution</h2>
+      <!-- ==================================================== -->
+
+      <p>
+        The <strong>Windows Operating System</strong> has grown and changed a
+        lot since it was first made. Each new version adds better features,
+        looks nicer, and works faster. This process of improvement over time is
+        called the <strong>evolution of Windows</strong>.
+      </p>
+
+      <h3 class="sub-heading">Why Windows Keeps Evolving:</h3>
+      <ul class="highlight-list">
+        <li>
+          <strong>Scalability:</strong> Works on all kinds of devices—PCs,
+          servers, and mobiles.
+        </li>
+        <li>
+          <strong>Performance:</strong> Each version runs faster and more
+          smoothly than older ones.
+        </li>
+        <li>
+          <strong>Integration:</strong> Supports modern tools like the web,
+          media, and .NET platform.
+        </li>
+        <li>
+          <strong>Ease of Use:</strong> New versions have better menus, icons,
+          and user interfaces.
+        </li>
+        <li>
+          <strong>Feature Upgrades:</strong> Adds useful tools and improves how
+          the system works.
+        </li>
+      </ul>
+
+      <h3 class="sub-heading">Main Versions in Windows History:</h3>
+      <ul class="highlight-list">
+        <li>
+          <strong>MS-DOS:</strong> Old text-only system used in the 1980s. No
+          graphics.
+        </li>
+        <li>
+          <strong>Windows 3.1:</strong> First version with a graphical user
+          interface (GUI).
+        </li>
+        <li>
+          <strong>Windows 95, 97, 98:</strong> Brought in better graphics and
+          supported 32-bit systems.
+        </li>
+        <li>
+          <strong>Windows NT:</strong> Improved security and used the NTFS file
+          system.
+        </li>
+        <li>
+          <strong>Windows XP, Vista, 7, 8, 10:</strong> Popular versions with
+          strong features and performance.
+        </li>
+        <li>
+          <strong>Windows Server Editions:</strong> Used by companies to handle
+          large-scale systems and networks.
+        </li>
+      </ul>
+
+      <p>
+        <strong>Summary:</strong> From simple black-and-white screens to
+        advanced, colorful, and secure systems, Windows has changed a lot. Each
+        version is made to be faster, safer, and more user-friendly than the
+        last.
+      </p>
+
+      <!-- ==================================================== -->
+      <h2 class="topic-heading" id="topic3">
+        Topic 3: File Systems & File Operations
+      </h2>
+      <!-- ==================================================== -->
+
+      <p>
+        A <strong>file system</strong> is the way an operating system stores and
+        organizes files on a disk. The Windows OS supports many file systems,
+        each with different features. File operations like creating, reading,
+        writing, and deleting files are handled by special commands called
+        <strong>APIs</strong>.
+      </p>
+
+      <h3 class="sub-heading">Main Windows File Systems:</h3>
+      <ul class="highlight-list">
+        <li>
+          <strong>NTFS:</strong> Modern file system. Supports large files,
+          security, encryption, and recovery.
+        </li>
+        <li>
+          <strong>FAT12/16/32:</strong> Older systems. Simple but limited in
+          file size and features.
+        </li>
+        <li>
+          <strong>exFAT:</strong> Good for USB drives. Handles large files but
+          has less security than NTFS.
+        </li>
+        <li><strong>CDFS:</strong> Used for CD-ROMs.</li>
+        <li><strong>UDF:</strong> Used for DVDs and Blu-ray discs.</li>
+      </ul>
+
+      <h3 class="sub-heading">File Naming Rules in Windows:</h3>
+      <ul class="highlight-list">
+        <li>File names can be up to 255 characters long.</li>
+        <li>Cannot use characters like <code> \ / : * ? " < > | </code>.</li>
+        <li>
+          Case-insensitive but case-preserving (e.g., <code>file.txt</code> =
+          <code>FILE.TXT</code>).
+        </li>
+        <li>
+          Some names are reserved, like <code>CON</code>, <code>PRN</code>,
+          <code>NUL</code>.
+        </li>
+      </ul>
+
+      <h3 class="sub-heading">Common File Operations:</h3>
+      <ul class="highlight-list">
+        <li><strong>CreateFile:</strong> Opens or creates a file.</li>
+        <li>
+          <strong>ReadFile / WriteFile:</strong> Reads from or writes to a file.
+        </li>
+        <li><strong>CloseHandle:</strong> Closes the file when done.</li>
+      </ul>
+
+      <h3 class="sub-heading">Standard C vs Windows API:</h3>
+      <ul class="highlight-list">
+        <li>
+          C functions like <code>fopen()</code> and <code>fread()</code> are
+          cross-platform.
+        </li>
+        <li>
+          Windows APIs like <code>CreateFile()</code> offer more control and
+          features.
+        </li>
+      </ul>
+
+      <p>
+        <strong>Summary:</strong> Windows supports many file systems to handle
+        different types of storage devices. File operations are done using
+        system functions or standard C functions, depending on what you need.
+      </p>
+
+      <!-- ==================================================== -->
+      <h2 class="topic-heading" id="topic4">
+        Topic 4: Character Encoding & Generic Programming
+      </h2>
+      <!-- ==================================================== -->
+
+      <p>
+        In Windows programming, it's important to handle text properly in
+        different languages. This is where
+        <strong>character encoding</strong> comes in. Windows supports both
+        old-style <strong>ASCII</strong> and modern <strong>Unicode</strong>. To
+        write code that works with both, we use something called
+        <strong>Generic Programming</strong>.
+      </p>
+
+      <h3 class="sub-heading">Character Encoding Types:</h3>
+      <ul class="highlight-list">
+        <li>
+          <strong>ASCII:</strong> Older format. Supports only English
+          characters. Uses 1 byte per character.
+        </li>
+        <li>
+          <strong>Unicode (UTF-16):</strong> Supports all languages (Arabic,
+          Chinese, Urdu, etc.). Uses 2 bytes per character.
+        </li>
+      </ul>
+
+      <h3 class="sub-heading">API Variants:</h3>
+      <ul class="highlight-list">
+        <li>Windows provides two versions of functions:</li>
+        <li><code>CreateFileA()</code> – for ASCII (A means ANSI)</li>
+        <li><code>CreateFileW()</code> – for Unicode (W means Wide)</li>
+      </ul>
+
+      <h3 class="sub-heading">Generic Programming Approach:</h3>
+      <ul class="highlight-list">
+        <li>
+          Use special types like <code>TCHAR</code> instead of
+          <code>char</code> or <code>wchar_t</code>.
+        </li>
+        <li>
+          Use <code>LPTSTR</code> for strings that adapt to Unicode or ASCII.
+        </li>
+        <li>
+          Define macros like <code>UNICODE</code> and <code>_UNICODE</code> to
+          switch between versions.
+        </li>
+        <li>
+          Use <code>_tmain()</code> instead of <code>main()</code> for portable
+          main function.
+        </li>
+      </ul>
+
+      <h3 class="sub-heading">Why Use Generic Code?</h3>
+      <ul class="highlight-list">
+        <li>Same code can work in both Unicode and non-Unicode builds.</li>
+        <li>Makes it easier to maintain and upgrade.</li>
+        <li>Best practice for modern Windows development.</li>
+      </ul>
+
+      <p>
+        <strong>Summary:</strong> Windows supports both ASCII and Unicode. Using
+        Generic Programming makes your code flexible, reusable, and future-ready
+        for global applications.
+      </p>
+
+      <!-- ==================================================== -->
+      <h2 class="topic-heading" id="topic5">Topic 5: Error Handling</h2>
+      <!-- ==================================================== -->
+
+      <p>
+        In Windows programming, things can go wrong—like a file not opening or a
+        device not responding. That’s why <strong>error handling</strong> is
+        important. It helps you find out what went wrong and respond in a proper
+        way.
+      </p>
+
+      <h3 class="sub-heading">Key Functions for Error Handling:</h3>
+      <ul class="highlight-list">
+        <li>
+          <strong>GetLastError():</strong> Returns a number (error code) that
+          tells what went wrong.
+        </li>
+        <li>
+          <strong>FormatMessage():</strong> Converts the error code into a
+          readable message.
+        </li>
+        <li>
+          <strong>LocalFree():</strong> Frees memory that was used for error
+          messages.
+        </li>
+      </ul>
+
+      <h3 class="sub-heading">Typical Steps to Report Errors:</h3>
+      <ul class="highlight-list">
+        <li>Call a function (e.g., <code>CreateFile()</code>).</li>
+        <li>
+          If it fails, call <code>GetLastError()</code> to get the error code.
+        </li>
+        <li>Use <code>FormatMessage()</code> to get the readable message.</li>
+        <li>Display the message or log it for debugging.</li>
+      </ul>
+
+      <h3 class="sub-heading">Custom Error Reporting Function:</h3>
+      <ul class="highlight-list">
+        <li>
+          In large programs, it’s common to write your own helper function like
+          <code>ReportError()</code>.
+        </li>
+        <li>This function prints the user message and the system error.</li>
+        <li>
+          Optionally, it can also exit the program if the error is serious.
+        </li>
+      </ul>
+
+      <p>
+        <strong>Summary:</strong> Error handling in Windows uses functions like
+        <code>GetLastError()</code> and <code>FormatMessage()</code> to help you
+        understand and fix problems. Writing clean error reporting makes
+        programs easier to debug and maintain.
+      </p>
+
+      <!-- ==================================================== -->
+      <h2 class="topic-heading" id="topic6">
+        Topic 6: Processes & Multitasking
+      </h2>
+      <!-- ==================================================== -->
+
+      <p>
+        <strong>Multitasking</strong> means running more than one program at the
+        same time. In Windows, each running program is called a
+        <strong>process</strong>. A process can do many things using smaller
+        units called <strong>threads</strong>.
+      </p>
+
+      <h3 class="sub-heading">What is a Process?</h3>
+      <ul class="highlight-list">
+        <li>A process is a program in execution (e.g., Chrome, Word).</li>
+        <li>Each process has its own memory and system resources.</li>
+        <li>
+          Processes are created using APIs like <code>CreateProcess()</code>.
+        </li>
+      </ul>
+
+      <h3 class="sub-heading">What is a Thread?</h3>
+      <ul class="highlight-list">
+        <li>A thread is a small unit of work inside a process.</li>
+        <li>A process can have one or many threads.</li>
+        <li>Threads share memory but run independently.</li>
+      </ul>
+
+      <h3 class="sub-heading">How Multitasking Works:</h3>
+      <ul class="highlight-list">
+        <li>Windows OS switches between tasks quickly (CPU scheduling).</li>
+        <li>
+          This switching happens so fast that it looks like tasks run at the
+          same time.
+        </li>
+        <li>Helps users play music, type, and download files all at once.</li>
+      </ul>
+
+      <h3 class="sub-heading">APIs and Functions:</h3>
+      <ul class="highlight-list">
+        <li><code>CreateProcess()</code>: Starts a new process.</li>
+        <li><code>ExitProcess()</code>: Ends a process safely.</li>
+        <li>
+          <code>GetCurrentProcess()</code>: Returns info about the current
+          process.
+        </li>
+      </ul>
+
+      <p>
+        <strong>Summary:</strong> Windows uses multitasking to run many apps at
+        once. It manages processes and threads using special functions.
+        Understanding these helps in writing efficient, responsive programs.
+      </p>
+
+      <!-- ==================================================== -->
+      <h2 class="topic-heading" id="topic7">
+        Topic 7: Interprocess Communication (IPC)
+      </h2>
+      <!-- ==================================================== -->
+
+      <p>
+        Sometimes different programs (processes) need to share data or send
+        messages to each other. This is called
+        <strong>Interprocess Communication</strong>, or <strong>IPC</strong>.
+        Windows provides many safe and efficient ways to do IPC.
+      </p>
+
+      <h3 class="sub-heading">Why IPC is Needed:</h3>
+      <ul class="highlight-list">
+        <li>Processes may work together to complete a task.</li>
+        <li>They may need to exchange files, messages, or signals.</li>
+        <li>Helps in building client-server and network-based applications.</li>
+      </ul>
+
+      <h3 class="sub-heading">Common IPC Methods in Windows:</h3>
+      <ul class="highlight-list">
+        <li>
+          <strong>Pipes:</strong> Allow one-way or two-way communication between
+          processes.
+        </li>
+        <li>
+          <strong>Named Pipes:</strong> Used for communication between unrelated
+          processes, even on different machines.
+        </li>
+        <li>
+          <strong>Anonymous Pipes:</strong> Used between related processes (like
+          parent and child).
+        </li>
+        <li>
+          <strong>Shared Memory:</strong> Fastest method. Both processes access
+          the same memory area.
+        </li>
+        <li>
+          <strong>Mailslots:</strong> For simple message-based communication.
+        </li>
+        <li>
+          <strong>Sockets:</strong> Used for communication over a network (e.g.,
+          internet).
+        </li>
+      </ul>
+
+      <h3 class="sub-heading">Synchronization Tools:</h3>
+      <ul class="highlight-list">
+        <li>
+          <strong>Mutexes:</strong> Ensure only one process uses a resource at a
+          time.
+        </li>
+        <li>
+          <strong>Semaphores:</strong> Limit how many processes access a
+          resource.
+        </li>
+        <li>
+          <strong>Events:</strong> Let one process notify another when something
+          happens.
+        </li>
+      </ul>
+
+      <p>
+        <strong>Summary:</strong> IPC lets programs talk to each other and work
+        together. Windows offers tools like pipes, shared memory, and sockets to
+        safely share data and signals between processes.
+      </p>
+
+      <!-- ==================================================== -->
+      <h2 class="topic-heading" id="topic8">
+        Topic 8: Thread Management & Scheduling
+      </h2>
+      <!-- ==================================================== -->
+
+      <p>
+        A <strong>thread</strong> is the smallest part of a process that can run
+        independently. Threads are useful for doing multiple tasks at the same
+        time inside a single program. Windows lets you create and control
+        threads, and decides which thread runs when — this is called
+        <strong>scheduling</strong>.
+      </p>
+
+      <h3 class="sub-heading">What is a Thread?</h3>
+      <ul class="highlight-list">
+        <li>It is a part of a process that does some work.</li>
+        <li>All threads of a process share the same memory and data.</li>
+        <li>Threads help make programs faster and more responsive.</li>
+      </ul>
+
+      <h3 class="sub-heading">Creating and Managing Threads:</h3>
+      <ul class="highlight-list">
+        <li><code>CreateThread()</code>: Starts a new thread.</li>
+        <li><code>ExitThread()</code>: Stops a thread safely.</li>
+        <li>
+          <code>GetCurrentThread()</code>: Gets info about the current thread.
+        </li>
+        <li><code>Sleep()</code>: Pauses the thread for a set time.</li>
+      </ul>
+
+      <h3 class="sub-heading">Thread Scheduling:</h3>
+      <ul class="highlight-list">
+        <li>Windows decides which thread runs next using priorities.</li>
+        <li>Higher priority threads get more CPU time.</li>
+        <li>
+          Threads can be paused and resumed using functions like
+          <code>SuspendThread()</code> and <code>ResumeThread()</code>.
+        </li>
+      </ul>
+
+      <h3 class="sub-heading">Thread Synchronization:</h3>
+      <ul class="highlight-list">
+        <li>
+          <strong>WaitForSingleObject():</strong> Waits for a thread or resource
+          to finish or become available.
+        </li>
+        <li>
+          <strong>WaitForMultipleObjects():</strong> Waits for more than one
+          thread or resource.
+        </li>
+        <li>
+          These help avoid conflicts when threads try to access the same
+          resource.
+        </li>
+      </ul>
+
+      <p>
+        <strong>Summary:</strong> Threads allow a program to do many tasks at
+        once. Windows gives control over creating, pausing, and ending threads.
+        It also schedules them based on importance and keeps things running
+        smoothly and safely.
+      </p>
+
+      <!-- ==================================================== -->
+      <div class="short-notes-summary">
+        <h2>🎯 Midterm Wrap-Up</h2>
+        <p>
+          Great job! You’ve now covered all the
+          <strong>major topics for your midterm paper</strong>. You should have
+          a clear understanding of how Windows OS works — from processes and
+          threads to file handling and error reporting.
+        </p>
+        <p>
+          Feel free to <strong>review any section again</strong> to make the
+          ideas crystal clear. You can also explore related material to expand
+          your knowledge further.
+        </p>
+        <p>You’re now fully prepared. 💪 Keep going — you’ve got this!</p>
+      </div>
+    </div>
+  </body>
+</html>
+
+<!-- There are 8 main topics for the mid term of cs609(system programming): 1.
+Introduction to windows Operating system 2. Core Windows Concepts 3. File System
+and File Operations 4. Character Encoding and Generic programming 5. Error
+Handling in Windows 6. Processes and Multitasking (starting near topic 21 to
+onward) 7. Interprocess communication 8. Thread Management and Scheduling -->
