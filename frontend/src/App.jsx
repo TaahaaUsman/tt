@@ -8,16 +8,22 @@ import AuthLayout from "./layouts/AuthLayout";
 import Home from "./pages/Home";
 import Courses from "./pages/Courses";
 import CourseDetail from "./pages/CourseDetail";
+import CourseMindMap from "./pages/CourseMindMap";
+import Profile from "./pages/Profile";
+import AIChat from "./pages/AIChat";
+import Notifications from "./pages/Notifications";
 import Quiz from "./pages/Quiz";
 import PastPaperQuiz from "./pages/PastPaperQuiz";
 import Notes from "./pages/Notes";
 import SubjectiveQuestions from "./pages/SubjectiveQuestions";
 import Contact from "./pages/Contact";
+import Pricing from "./pages/Pricing";
 import Analytics from "./pages/Analytics";
 import Admin from "./pages/Admin";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import VerifyEmail from "./pages/VerifyEmail";
+import AuthCallback from "./pages/AuthCallback";
 import FloatingChat from "./components/FloatingChat";
 import AnalyticsTracker from "./components/AnalyticsTracker";
 
@@ -43,6 +49,7 @@ function AppRoutes() {
         <Route path="login" element={<Login />} />
         <Route path="register" element={<Register />} />
         <Route path="verify-email" element={<VerifyEmail />} />
+        <Route path="callback" element={<AuthCallback />} />
       </Route>
 
       <Route path="/quiz/pastpaper/:courseId/:paperId" element={<ProtectedRoute><PastPaperQuiz /></ProtectedRoute>} />
@@ -53,9 +60,15 @@ function AppRoutes() {
         <Route index element={<Home />} />
         <Route path="courses" element={<Courses />} />
         <Route path="courses/:id" element={<CourseDetail />} />
+        <Route path="courses/:id/mindmap" element={<CourseMindMap />} />
         <Route path="courses/:courseId/questions" element={<ProtectedRoute><SubjectiveQuestions /></ProtectedRoute>} />
+        <Route path="pricing" element={<Pricing />} />
+        <Route path="billing" element={<Pricing />} />
         <Route path="contact" element={<Contact />} />
-        <Route path="analytics" element={<Analytics />} />
+        <Route path="analytics" element={<ProtectedRoute><Analytics /></ProtectedRoute>} />
+        <Route path="ai-chat" element={<ProtectedRoute><AIChat /></ProtectedRoute>} />
+        <Route path="notifications" element={<ProtectedRoute><Notifications /></ProtectedRoute>} />
+        <Route path="profile" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
         <Route path="admin" element={<SuperAdminRoute><Admin /></SuperAdminRoute>} />
       </Route>
 

@@ -1,17 +1,24 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { FcGoogle } from "react-icons/fc";
 import { FaEnvelope, FaLock, FaEye, FaEyeSlash } from "react-icons/fa";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import Loader from "./Loader";
 import { useLoginMutation } from "../query/queries";
+import { getBackendBase } from "../query/client";
 
 export default function LoginPage() {
+  const [searchParams] = useSearchParams();
   const loginMutation = useLoginMutation();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState("");
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const err = searchParams.get("error");
+    if (err) setError(decodeURIComponent(err.replace(/\+/g, " ")));
+  }, [searchParams]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -94,14 +101,13 @@ export default function LoginPage() {
           <div className="relative bg-white px-4 text-sm text-gray-500">or continue with</div>
         </div>
         <div className="mb-3 flex flex-col space-y-3">
-          <button
-            type="button"
-            onClick={() => setError("Google login: Add Google OAuth and call POST /api/auth/register-with-google with name, email, profilePictureUrl.")}
+          <a
+            href={`${getBackendBase()}/api/auth/google`}
             className="flex cursor-pointer items-center justify-center gap-3 rounded-md border border-gray-300 py-2 text-gray-700 hover:bg-gray-100 transition duration-200 transform hover:scale-105"
           >
             <FcGoogle size={20} />
             Login with Google
-          </button>
+          </a>
         </div>
         <p className="text-center text-sm text-gray-600">
           Don&apos;t have an account?{" "}

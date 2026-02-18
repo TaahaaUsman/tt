@@ -7,6 +7,7 @@ import { Toaster } from "react-hot-toast";
 import { store } from "./redux";
 import App from "./App";
 import "./index.css";
+import "./styles/dashboard.css";
 
 const queryClient = new QueryClient({
   defaultOptions: {

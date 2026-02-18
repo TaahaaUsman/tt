@@ -4,13 +4,16 @@
 export default function SectionBlock({ title, action, children, className = "" }) {
   const showHeader = title || action;
   return (
-    <section className={`mb-10 md:mb-12 ${className}`}>
+    <section className={`mb-12 md:mb-16 ${className}`}>
       {showHeader && (
-        <div className="flex items-center justify-between gap-4 mb-4">
+        <div className="flex items-center justify-between gap-4 mb-6 md:mb-8">
           {title && (
-            <h2 className="text-base font-semibold uppercase tracking-wider text-gray-500 border-b-2 border-blue-600 pb-1.5 inline-block">
-              {title}
-            </h2>
+            <div className="relative">
+              <h2 className="text-lg md:text-xl font-bold text-gray-900 tracking-tight">
+                {title}
+              </h2>
+              <div className="absolute -bottom-2 left-0 w-12 h-1 bg-indigo-600 rounded-full" />
+            </div>
           )}
           {action && <div className="shrink-0">{action}</div>}
         </div>
@@ -19,3 +22,4 @@ export default function SectionBlock({ title, action, children, className = "" }
     </section>
   );
 }
+

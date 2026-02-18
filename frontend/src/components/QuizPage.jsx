@@ -13,6 +13,8 @@ import { MdQuiz, MdVolumeUp, MdExpandMore, MdExpandLess } from "react-icons/md";
 import useIsMobile from "../utils/useIsMobile";
 import { useSelector } from "react-redux";
 import { apiFetch } from "../query/client";
+import { motion } from "framer-motion";
+import ChatMessageContent from "./chat/ChatMessageContent.jsx";
 
 const bg = "/assets/Images/bg.jpg";
 
@@ -281,35 +283,44 @@ export default function QuizPage({ quiz, courseDetails, courseId, type, paperId 
                       <p className="whitespace-pre-wrap">{referenceParagraph}</p>
                     </div>
                   )}
-                  <div className="bg-gray-50 border border-gray-200 rounded-lg p-3">
-                    <p className="font-medium text-gray-700 mb-2 text-sm">💬 Ask AI about this concept:</p>
-                    <div className="space-y-2 max-h-40 overflow-y-auto mb-2">
+                  <div className="bg-gray-50 border border-gray-200 rounded-xl p-3 shadow-inner">
+                    <p className="font-medium text-gray-700 mb-2 text-sm">💬 Ask AI about this concept (VU specialist):</p>
+                    <div className="space-y-3 max-h-48 overflow-y-auto mb-3">
                       {chatMessages.map((m, i) => (
-                        <div
+                        <motion.div
                           key={i}
+                          initial={{ opacity: 0, y: 6 }}
+                          animate={{ opacity: 1, y: 0 }}
                           className={`flex flex-col ${m.role === "user" ? "items-end" : "items-start"}`}
                         >
                           <div
-                            className={`max-w-[90%] rounded-lg px-3 py-2 text-sm ${
-                              m.role === "user" ? "bg-blue-600 text-white" : "bg-white border border-gray-200 text-gray-800"
+                            className={`max-w-[92%] rounded-xl px-3 py-2.5 text-sm ${
+                              m.role === "user"
+                                ? "bg-indigo-600 text-white rounded-tr-md"
+                                : "bg-white border border-gray-200 text-gray-800 rounded-tl-md shadow-sm"
                             }`}
                           >
-                            {m.content}
+                            <ChatMessageContent content={m.content} role={m.role} typingEffect />
                             {m.role === "assistant" && (
                               <button
                                 type="button"
                                 onClick={() => speakText(m.content)}
-                                className="mt-1 flex items-center gap-1 text-blue-600 hover:text-blue-800 text-xs"
+                                className="mt-1.5 flex items-center gap-1 text-indigo-600 hover:text-indigo-800 text-xs font-medium"
                                 title="Listen"
                               >
                                 <MdVolumeUp size={14} /> Listen
                               </button>
                             )}
                           </div>
-                        </div>
+                        </motion.div>
                       ))}
                       {chatLoading && (
-                        <p className="text-sm text-gray-500">AI is typing...</p>
+                        <div className="flex items-center gap-2 text-gray-500 text-sm">
+                          <span className="w-1.5 h-1.5 rounded-full bg-gray-400 animate-bounce" />
+                          <span className="w-1.5 h-1.5 rounded-full bg-gray-400 animate-bounce [animation-delay:0.15s]" />
+                          <span className="w-1.5 h-1.5 rounded-full bg-gray-400 animate-bounce [animation-delay:0.3s]" />
+                          <span className="ml-1">AI is typing...</span>
+                        </div>
                       )}
                       <div ref={chatEndRef} />
                     </div>
@@ -320,13 +331,13 @@ export default function QuizPage({ quiz, courseDetails, courseId, type, paperId 
                         onChange={(e) => setChatInput(e.target.value)}
                         onKeyDown={(e) => e.key === "Enter" && handleConceptChatSend()}
                         placeholder="Ask about this concept..."
-                        className="flex-1 px-3 py-2 border border-gray-300 rounded-lg text-sm"
+                        className="flex-1 px-3 py-2.5 border border-gray-300 rounded-xl text-sm focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-400 outline-none"
                       />
                       <button
                         type="button"
                         onClick={handleConceptChatSend}
                         disabled={chatLoading}
-                        className="px-3 py-2 bg-blue-600 text-white rounded-lg text-sm font-medium hover:bg-blue-700 disabled:opacity-50"
+                        className="px-4 py-2.5 bg-indigo-600 text-white rounded-xl text-sm font-medium hover:bg-indigo-700 disabled:opacity-50 transition-colors"
                       >
                         Send
                       </button>
@@ -354,13 +365,12 @@ export default function QuizPage({ quiz, courseDetails, courseId, type, paperId 
                   <div
                     key={index}
                     onClick={() => handleSwitchQuestion(index)}
-                    className={`cursor-pointer w-6 h-6 rounded-xl flex items-center justify-center text-sm font-semibold ${
-                      answers[index] !== null
+                    className={`cursor-pointer w-6 h-6 rounded-xl flex items-center justify-center text-sm font-semibold ${answers[index] !== null
                         ? answers[index] === questions[index].correctOptionIndex
                           ? "bg-green-500 text-white"
                           : "bg-red-500 text-white"
                         : "bg-gray-200"
-                    }`}
+                      }`}
                   >
                     {index + 1}
                   </div>
