@@ -1,14 +1,16 @@
-const DEMO_REPLY =
-  "This is a demo reply. Soon you'll be able to chat with AI here just like ChatGPT. We'll connect OpenAI and make it fully functional.";
+import * as buddyChatService from "../services/buddyChatService.js";
 
 export async function sendMessage(req, res) {
   try {
     const { message } = req.body || {};
-    // TODO: Replace with OpenAI chat when ready
-    const reply = DEMO_REPLY;
+    const reply = await buddyChatService.getBuddyReply(message);
     res.json({ success: true, reply });
   } catch (error) {
-    console.error("❌ Chat send error:", error);
-    res.status(500).json({ success: false, message: "Internal Server Error" });
+    console.error("❌ Buddy AI chat error:", error);
+    res.status(500).json({
+      success: false,
+      message: "Internal Server Error",
+      reply: "Something went wrong. Please try again.",
+    });
   }
 }

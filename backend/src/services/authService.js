@@ -14,7 +14,7 @@ export async function loginUser({ email, password }) {
   const token = createToken(user._id);
   return {
     token,
-    user: { id: user._id, email: user.email, name: user.name, profilePicture: user.profilePictureUrl, role: user.role || "user" },
+    user: { id: user._id, email: user.email, name: user.name, profilePicture: user.profilePictureUrl, role: user.role || "user", plan: user.plan || "free" },
   };
 }
 
@@ -53,7 +53,17 @@ export async function getCurrentUser(token) {
   if (!decoded?.id) return { error: "Unauthorized", status: 401 };
   const user = await User.findById(decoded.id).select("-passwordHash -__v");
   if (!user) return { error: "Unauthorized", status: 401 };
-  return { user };
+  const userObj = user.toObject ? user.toObject() : { ...user };
+  return {
+    user: {
+      id: userObj._id,
+      email: userObj.email,
+      name: userObj.name,
+      profilePicture: userObj.profilePictureUrl,
+      role: userObj.role || "user",
+      plan: userObj.plan || "free",
+    },
+  };
 }
 
 export async function verifyEmail({ email, code }) {
@@ -73,7 +83,7 @@ export async function verifyEmail({ email, code }) {
   return {
     message: "Login successful",
     token,
-    user: { id: user._id, email: user.email, name: user.name, profilePicture: user.profilePictureUrl, role: user.role || "user" },
+    user: { id: user._id, email: user.email, name: user.name, profilePicture: user.profilePictureUrl, role: user.role || "user", plan: user.plan || "free" },
   };
 }
 
@@ -87,7 +97,7 @@ export async function registerWithGoogle({ name, email, profilePictureUrl }) {
   return {
     message: "Login successful",
     token,
-    user: { id: user._id, email: user.email, name: user.name, profilePicture: user.profilePictureUrl, role: user.role || "user" },
+    user: { id: user._id, email: user.email, name: user.name, profilePicture: user.profilePictureUrl, role: user.role || "user", plan: user.plan || "free" },
   };
 }
 

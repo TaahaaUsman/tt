@@ -16,6 +16,8 @@ const userSchema = new mongoose.Schema(
     bookmarkedCourses: [{ type: mongoose.Schema.Types.ObjectId, ref: "Course" }],
     enrolledCourses: [{ type: mongoose.Schema.Types.ObjectId, ref: "Course" }],
     role: { type: String, enum: ["user", "superadmin"], default: "user" },
+    /** Paid plan: free, pro, ultra_pro. Updated by Stripe webhook. */
+    plan: { type: String, enum: ["free", "pro", "ultra_pro"], default: "free" },
     isEmailVerified: { type: Boolean, default: false },
     emailVerificationCode: String,
     emailVerificationExpiry: Date,

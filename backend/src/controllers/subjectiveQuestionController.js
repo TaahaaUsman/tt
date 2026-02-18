@@ -1,24 +1,14 @@
 import * as subjectiveQuestionService from "../services/subjectiveQuestionService.js";
 
-const corsHeaders = {
-  "Access-Control-Allow-Origin": "*",
-  "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
-  "Access-Control-Allow-Headers": "Content-Type, Authorization",
-};
-
-function sendCors(res, status, data) {
-  return res.status(status).set(corsHeaders).json(data);
-}
-
 export async function getQuestions(req, res) {
   try {
     const { courseId } = req.body || {};
     const result = await subjectiveQuestionService.getQuestions(courseId);
-    if (result.error) return sendCors(res, result.status, { error: result.error });
-    sendCors(res, 200, { success: true, questions: result.questions });
+    if (result.error) return res.status(result.status).json({ error: result.error });
+    res.status(200).json({ success: true, questions: result.questions });
   } catch (error) {
     console.error("❌ Error fetching subjective questions:", error);
-    sendCors(res, 500, { success: false, message: "Internal Server Error" });
+    res.status(500).json({ success: false, message: "Internal Server Error" });
   }
 }
 

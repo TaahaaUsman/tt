@@ -1,0 +1,201 @@
+/* Dashboard layout styling - matches dashboard folder aesthetic */
+
+:root {
+  --dashboard-theme: #153f68;
+  --dashboard-dark: #042240;
+  --dashboard-gradient: linear-gradient(176.59deg, #0a2d4f 0.42%, #153f68 135.49%);
+  --dashboard-border: #eaecf0;
+  --dashboard-bg: #f6f8fa;
+}
+
+/* Dashboard layout body */
+body.dashboard-active {
+  background-color: var(--dashboard-bg) !important;
+}
+
+/* Sidebar - fixed dark gradient */
+.dashboard-sidebar {
+  width: 259px;
+  height: 100vh;
+  background: var(--dashboard-gradient);
+  color: #fff;
+  border-radius: 0 18px 18px 0;
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.dashboard-sidebar__logo {
+  padding: 1.75rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.dashboard-sidebar__nav {
+  flex: 1;
+  overflow-y: auto;
+  padding: 1.5rem 1.375rem 1.875rem;
+}
+
+.dashboard-sidebar__nav-label {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: 1rem;
+  display: block;
+}
+
+.dashboard-sidebar__link {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 0.625rem 0.75rem;
+  margin-bottom: 0.75rem;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.dashboard-sidebar__link:hover {
+  background: var(--dashboard-dark);
+  color: #fff;
+}
+
+.dashboard-sidebar__link.active {
+  background: var(--dashboard-dark);
+  color: #fff;
+}
+
+.dashboard-sidebar__bottom {
+  padding: 1rem 1.375rem 1.875rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+  flex-shrink: 0;
+}
+
+/* Topbar */
+.dashboard-topbar {
+  margin-left: 259px;
+  background: #fff;
+  border-bottom: 1px solid var(--dashboard-border);
+  padding: 1.25rem 1.5rem;
+  position: sticky;
+  top: 0;
+  z-index: 999;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.dashboard-topbar__greeting {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--dashboard-theme);
+  margin: 0;
+}
+
+.dashboard-topbar__search {
+  max-width: 300px;
+  width: 100%;
+  height: 44px;
+  padding: 0.5rem 0.875rem 0.5rem 2.75rem;
+  border: 1px solid var(--dashboard-border);
+  border-radius: 8px;
+  font-size: 0.875rem;
+}
+
+.dashboard-topbar__search::placeholder {
+  color: #888a8b;
+}
+
+.dashboard-topbar__actions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.dashboard-topbar__btn {
+  background: #f6f8fa;
+  border: 1px solid var(--dashboard-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  height: 42px;
+  padding: 0 1rem;
+  border-radius: 8px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #101010;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.dashboard-topbar__btn:hover {
+  background: #eaecf0;
+  color: var(--dashboard-theme);
+}
+
+/* Main content area */
+.dashboard-main {
+  margin-left: 259px;
+  padding: 1rem 1.5rem 2rem;
+  min-height: calc(100vh - 80px);
+}
+
+/* Mobile: hide sidebar, full-width content */
+@media (max-width: 1023px) {
+  .dashboard-sidebar--desktop {
+    display: none !important;
+  }
+
+  .dashboard-topbar {
+    margin-left: 0;
+    padding: 0.75rem 1rem;
+    margin-top: 56px; /* below mobile header */
+  }
+
+  .dashboard-main {
+    margin-left: 0;
+    padding: 1rem;
+  }
+
+  .dashboard-topbar__search,
+  .dashboard-topbar .hidden.lg\:flex {
+    display: none !important;
+  }
+}
+
+/* Mobile sidebar overlay */
+.dashboard-sidebar--mobile {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: -100%;
+  width: 250px;
+  height: 100vh;
+  background: var(--dashboard-gradient);
+  color: #fff;
+  z-index: 1200;
+  transition: all 0.3s ease-in-out;
+  opacity: 0;
+}
+
+.dashboard-sidebar--mobile.active {
+  left: 0;
+  opacity: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.dashboard-sidebar--mobile .dashboard-sidebar__nav {
+  padding-top: 3rem;
+}

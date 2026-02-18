@@ -1,9 +1,7 @@
 /**
- * Evaluates a subjective answer using OpenAI (if API key is set) or a fallback mock.
- * Returns { marks, feedback } where marks is 0 to maxMarks.
+ * Subjective answer evaluation – uses OpenAI SDK. Returns { marks, feedback }.
  */
-
-const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
+import { openai } from "../lib/openai.js";
 
 function mockEvaluate(questionText, userAnswer, maxMarks) {
   const trimmed = (userAnswer || "").trim();
@@ -23,54 +21,45 @@ function mockEvaluate(questionText, userAnswer, maxMarks) {
   }
   return {
     marks,
-    feedback: `Answer length and relevance considered. You scored ${marks}/${maxMarks}. (Demo evaluation – add OPENAI_API_KEY for AI grading.)`,
+    feedback: `Answer length considered. You scored ${marks}/${maxMarks}. (Add OPENAI_API_KEY in backend for AI grading.)`,
   };
 }
 
+function parseEvaluationResponse(content, maxMarks) {
+  const match = (content || "").match(/\{[\s\S]*\}/);
+  if (match) {
+    const parsed = JSON.parse(match[0]);
+    const marks = Math.min(maxMarks, Math.max(0, Number(parsed.marks) || 0));
+    const feedback = typeof parsed.feedback === "string" ? parsed.feedback : "Evaluated.";
+    return { marks, feedback };
+  }
+  return null;
+}
+
 export async function evaluateAnswer(questionText, userAnswer, maxMarks) {
-  if (!OPENAI_API_KEY) return mockEvaluate(questionText, userAnswer, maxMarks);
+  if (!openai) return mockEvaluate(questionText, userAnswer, maxMarks);
 
   try {
-    const res = await fetch("https://api.openai.com/v1/chat/completions", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${OPENAI_API_KEY}`,
-      },
-      body: JSON.stringify({
-        model: "gpt-4o-mini",
-        messages: [
-          {
-            role: "system",
-            content: `You are an examiner. Evaluate the student's answer and give marks out of ${maxMarks}. Reply in JSON only: {"marks": number (0-${maxMarks}), "feedback": "one or two sentences"}. Be fair: partial credit for partially correct answers.`,
-          },
-          {
-            role: "user",
-            content: `Question: ${questionText}\n\nStudent's answer: ${(userAnswer || "").trim() || "(No answer)"}\n\nRespond with JSON: {"marks": number, "feedback": "string"}`,
-          },
-        ],
-        temperature: 0.3,
-        max_tokens: 200,
-      }),
+    const completion = await openai.chat.completions.create({
+      model: "gpt-4o-mini",
+      messages: [
+        {
+          role: "system",
+          content: `You are an examiner for Virtual University. Evaluate the student's answer and give marks out of ${maxMarks}. Reply in JSON only: {"marks": number (0-${maxMarks}), "feedback": "one or two sentences"}. Be fair: partial credit for partially correct answers.`,
+        },
+        {
+          role: "user",
+          content: `Question: ${questionText}\n\nStudent's answer: ${(userAnswer || "").trim() || "(No answer)"}\n\nRespond with JSON: {"marks": number, "feedback": "string"}`,
+        },
+      ],
+      temperature: 0.3,
+      max_tokens: 200,
     });
-
-    if (!res.ok) {
-      const err = await res.text();
-      console.error("OpenAI API error:", res.status, err);
-      return mockEvaluate(questionText, userAnswer, maxMarks);
-    }
-
-    const data = await res.json();
-    const content = data?.choices?.[0]?.message?.content?.trim() || "";
-    const match = content.match(/\{[\s\S]*\}/);
-    if (match) {
-      const parsed = JSON.parse(match[0]);
-      let marks = Math.min(maxMarks, Math.max(0, Number(parsed.marks) || 0));
-      const feedback = typeof parsed.feedback === "string" ? parsed.feedback : "Evaluated.";
-      return { marks, feedback };
-    }
+    const content = completion?.choices?.[0]?.message?.content?.trim() || "";
+    const result = parseEvaluationResponse(content, maxMarks);
+    if (result) return result;
   } catch (e) {
-    console.error("AI evaluate error:", e);
+    console.error("AI evaluate (OpenAI) error:", e.message);
   }
   return mockEvaluate(questionText, userAnswer, maxMarks);
 }
